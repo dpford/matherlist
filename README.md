@@ -18,4 +18,4 @@ Enter your waitlist number (1–1069) and see, for each week you signed up for:
 
 Single `index.html` file — no frameworks, no build step, no external dependencies. All 1069 rows of waitlist data are embedded inline as a JS object. Position is calculated client-side by counting how many lower-numbered families also requested the same cabin size for the same week.
 
-Data parsed from the official Camp Mather 2026 Waiting List PDF.
+Data parsed from the [official Camp Mather 2026 Waiting List PDF](https://sfrecpark.org/DocumentCenter/View/28472/Camp-Mather-WaitListCrosstab2026).
