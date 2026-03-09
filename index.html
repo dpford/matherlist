@@ -1183,16 +1183,23 @@ function render(wlNum) {
   const results = calculatePositions(wlNum);
   const weekCount = results.length;
 
-  let html = `<div class="summary">Waitlist <strong>#${wlNum}</strong> — signed up for <strong>${weekCount} week${weekCount !== 1 ? "s" : ""}</strong></div>`;
+  let html = `<div class="summary">Waitlist <strong>#${wlNum}</strong> - signed up for <strong>${weekCount} week${weekCount !== 1 ? "s" : ""}</strong></div>`;
+
+  function friendlySize(code) {
+    const m = code.match(/^(\d+)/);
+    if (!m) return code;
+    const n = m[1];
+    const type = code.includes("PTS") ? "Person Tent Site" : "Person Cabin";
+    return `${n} ${type}`;
+  }
 
   for (const r of results) {
     html += `<div class="week-card"><h3>${r.weekName}</h3>`;
-    html += `<div style="font-size:.85rem;color:#6b7280;margin-bottom:.5rem">Requested: ${r.cabins}</div>`;
     for (const c of r.cabinResults) {
       const pct = c.position / c.total;
       const cls = pct <= 0.25 ? "pos-green" : pct <= 0.5 ? "pos-yellow" : "pos-red";
       html += `<div class="cabin-row">
-        <span class="cabin-label">${c.size}</span>
+        <span class="cabin-label">${friendlySize(c.size)}</span>
         <div class="cabin-pos">
           <span class="pos-badge ${cls}">#${c.position}</span>
           <span class="cabin-context">of ${c.total} families</span>
